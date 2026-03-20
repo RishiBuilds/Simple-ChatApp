@@ -9,43 +9,106 @@
 <body>
   <div class="container">
 
-    <!-- Login Screen -->
-    <div id="login-screen" class="screen">
-      <div class="login-box">
+    <!-- Auth Screen -->
+    <div id="auth-screen" class="screen">
+      <div class="auth-box">
         <h1>ChatApp</h1>
-        <p>enter a username to connect</p>
-        <input
-          type="text"
-          id="username-input"
-          placeholder="your_username"
-          maxlength="20"
-          autocomplete="off"
-          spellcheck="false"
-        />
-        <button id="join-btn">Join Channel</button>
+        
+        <!-- Login Form -->
+        <div id="login-form" class="auth-form">
+          <h2>Login</h2>
+          <input
+            type="text"
+            id="login-username"
+            placeholder="username"
+            maxlength="20"
+            autocomplete="username"
+          />
+          <input
+            type="password"
+            id="login-password"
+            placeholder="password"
+            autocomplete="current-password"
+          />
+          <button id="login-btn">Login</button>
+          <p class="switch-auth">
+            Don't have an account? <a href="#" id="show-register">Register</a>
+          </p>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-form" class="auth-form hidden">
+          <h2>Register</h2>
+          <input
+            type="text"
+            id="register-username"
+            placeholder="username (3-20 chars)"
+            maxlength="20"
+            autocomplete="username"
+          />
+          <input
+            type="password"
+            id="register-password"
+            placeholder="password (min 6 chars)"
+            autocomplete="new-password"
+          />
+          <button id="register-btn">Register</button>
+          <p class="switch-auth">
+            Already have an account? <a href="#" id="show-login">Login</a>
+          </p>
+        </div>
+
+        <div id="auth-error" class="error-message hidden"></div>
       </div>
     </div>
 
     <!-- Chat Screen -->
     <div id="chat-screen" class="screen hidden">
 
-      <div class="chat-header">
-        <h2>general</h2>
-        <span id="user-count">0 online</span>
-      </div>
+      <div class="chat-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <div class="sidebar-header">
+            <h3>ChatApp</h3>
+            <button id="logout-btn" title="Logout">Logout</button>
+          </div>
 
-      <div id="messages" class="messages" aria-live="polite" aria-label="Messages"></div>
+          <div class="channel-section">
+            <div class="section-title">Channels</div>
+            <div id="channel-general" class="channel-item active" data-channel="general">
+              # general
+            </div>
+          </div>
 
-      <div class="input-area">
-        <input
-          type="text"
-          id="message-input"
-          placeholder="message #general"
-          autocomplete="off"
-          spellcheck="false"
-          aria-label="Type a message"
-        />
-        <button id="send-btn" aria-label="Send message">Send</button>
+          <div class="users-section">
+            <div class="section-title">
+              Direct Messages
+              <span id="user-count">0 online</span>
+            </div>
+            <div id="users-list"></div>
+          </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="main-chat">
+          <div class="chat-header">
+            <h2 id="chat-title"># general</h2>
+          </div>
+
+          <div id="messages" class="messages" aria-live="polite" aria-label="Messages"></div>
+
+          <div class="input-area">
+            <input
+              type="text"
+              id="message-input"
+              placeholder="Type a message..."
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Type a message"
+            />
+            <button id="send-btn" aria-label="Send message">Send</button>
+          </div>
+        </div>
       </div>
 
     </div>
